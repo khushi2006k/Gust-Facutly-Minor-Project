@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Faculty Opening</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1, h3 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-section {
+            margin-bottom: 30px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .form-subsection {
+            margin-bottom: 15px;
+        }
+        .form-subsection label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"], input[type="date"], textarea, input[type="file"], select, input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .confirm-group {
+            display: flex;
+            justify-content: center;
+        }
+        .confirm-group input {
+            width: auto;
+        }
+        .name-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .name-container > div {
+            flex: 1;
+            min-width: 200px;
+        }
+        .email-confirm {
+            display: flex;
+            align-items: center;
+        }
+        .email-confirm select {
+            margin-left: 10px;
+        }
+        .checkbox-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        /* Container for the form */
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between items */
+}
+
+/* Form subsections in each row (to align side-by-side) */
+.form-subsection {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 45%; /* Adjust width to take up 45% of the container */
+}
+
+/* Mobile and email fields on their own rows */
+.form-container .form-subsection:nth-child(odd) {
+    margin-right: 10px;
+}
+/* Container for the form */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Flex container for email input and domain selector */
+.email-row {
+    display: flex;
+    gap: 10px; /* Space between input and select */
+}
+
+/* Make sure input and select take up space properly */
+.email-row input[type="email"] {
+    flex: 2;
+    padding: 8px;
+}
+
+.email-row select {
+    flex: 1;
+    padding: 8px;
+}
+.upload-container {
+    text-align: center;
+    margin: 10px;
+}
+
+.preview-box {
+    margin-top: 10px;
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.preview-box img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+
+#resume-preview {
+    text-align: center;
+    font-size: 14px;
+}
+/* Container for the form */
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between items */
+}
+
+/* Form subsections in each row (to align side-by-side) */
+.form-subsection {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 45%; /* Adjust width to take up 45% of the container */
+}
+
+/* Mobile and email fields on their own rows */
+.form-container .form-subsection:nth-child(odd) {
+    margin-right: 10px;
+}
+
+
+    </style>
+    <script>
+        function validateForm() {
+            const firstName = document.getElementById('first_name').value;
+            const middleName = document.getElementById('middle_name').value;
+            const lastName = document.getElementById('last_name').value;
+            const confirmFirstName = document.getElementById('confirm_first_name').value;
+            const confirmMiddleName = document.getElementById('confirm_middle_name').value;
+            const confirmLastName = document.getElementById('confirm_last_name').value;
+            const mobile = document.getElementById('mobile').value;
+            const confirmMobile = document.getElementById('confirm_mobile').value;
+            const email = document.getElementById('email').value;
+            const confirmEmail = document.getElementById('confirm_email').value;
+            const errors = [];
+
+            if (firstName !== confirmFirstName || middleName !== confirmMiddleName || lastName !== confirmLastName) {
+                errors.push("Name entries do not match.");
+            }
+            if (mobile !== confirmMobile) {
+                errors.push("Mobile number entries do not match.");
+            }
+            if (email !== confirmEmail) {
+                errors.push("Email addresses do not match.");
+            }
+
+            if (errors.length > 0) {
+                document.getElementById('formErrors').innerHTML = errors.join('<br>');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Guest Faculty Opening</h1>
+    <form id="registrationForm" onsubmit="return validateForm()">
+
+        <!-- Personal Details -->
+        <div class="form-section">
+            <h3>Personal Details</h3>
+            <div class="form-subsection">
+                <h4>Candidate Name</h4>
+                <div class="name-container">
+                    <div>
+                        <label for="first_name">Candidate First Name</label>
+                        <input type="text" id="first_name" name="first_name" placeholder="First Name" required>
+                    </div>
+                    <div>
+                        <label for="middle_name">Candidate Middle Name</label>
+                        <input type="text" id="middle_name" name="middle_name" placeholder="Middle Name" required>
+                    </div>
+                    <div>
+                        <label for="last_name">Candidate Last Name</label>
+                        <input type="text" id="last_name" name="last_name" placeholder="Last Name" required>
+                    </div>
+                </div>
+                <h4>Confirm Full Name</h4>
+                <div class="name-container">
+                    <div>
+                        <label for="confirm_first_name">Confirm Candidate First Name</label>
+                        <input type="text" id="confirm_first_name" name="confirm_first_name" placeholder="Confirm First Name" required>
+                    </div>
+                    <div>
+                        <label for="confirm_middle_name">Confirm Candidate Middle Name</label>
+                        <input type="text" id="confirm_middle_name" name="confirm_middle_name" placeholder="Confirm Middle Name" required>
+                    </div>
+                    <div>
+                        <label for="confirm_last_name">Confirm Candidate Last Name</label>
+                        <input type="text" id="confirm_last_name" name="confirm_last_name" placeholder="Confirm Last Name" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-subsection">
+                <h4>Father's/Husband's Name</h4>
+                <div class="name-container">
+                    <div>
+                        <label for="father_first_name">Father's/Husband's First Name</label>
+                        <input type="text" id="father_first_name" name="father_first_name" placeholder="First Name" required>
+                    </div>
+                    <div>
+                        <label for="father_middle_name">Father's/Husband's Middle Name</label>
+                        <input type="text" id="father_middle_name" name="father_middle_name" placeholder="Middle Name" required>
+                    </div>
+                    <div>
+                        <label for="father_last_name">Father's/Husband's Last Name</label>
+                        <input type="text" id="father_last_name" name="father_last_name" placeholder="Last Name" required>
+                    </div>
+                </div>
+                <div class="name-container">
+                    <div>
+                        <label for="confirm_father_first_name">Confirm Father's/Husband's First Name</label>
+                        <input type="text" id="confirm_father_first_name" name="confirm_father_first_name" placeholder="Confirm First Name" required>
+                    </div>
+                    <div>
+                        <label for="confirm_father_middle_name">Confirm Father's/Husband's Middle Name</label>
+                        <input type="text" id="confirm_father_middle_name" name="confirm_father_middle_name" placeholder="Confirm Middle Name" required>
+                    </div>
+                    <div>
+                        <label for="confirm_father_last_name">Confirm Father's/Husband's Last Name</label>
+                        <input type="text" id="confirm_father_last_name" name="confirm_father_last_name" placeholder="Confirm Last Name" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-subsection">
+                <h4>Mother's Name</h4>
+                <div class="name-container">
+                    <div>
+                        <label for="mother_first_name">Mother's First Name</label>
+                        <input type="text" id="mother_first_name" name="mother_first_name" placeholder="First Name" required>
+                    </div>
+                    <div>
+                        <label for="mother_middle_name">Mother's Middle Name</label>
+                        <input type="text" id="mother_middle_name" name="mother_middle_name" placeholder="Middle Name" required>
+                    </div>
+                    <div>
+                        <label for="mother_last_name">Mother's Last Name</label>
+                        <input type="text" id="mother_last_name" name="mother_last_name" placeholder="Last Name" required>
+                    </div>
+                </div>
+                <div class="name-container">
+                    <div>
+                        <label for="confirm_mother_first_name">Confirm Mother's First Name</label>
+                        <input type="text" id="confirm_mother_first_name" name="confirm_mother_first_name" placeholder="Confirm First Name" required>
+                    </div>
+                    <div>
+                        <label for="confirm_mother_middle_name">Confirm Mother's Middle Name</label>
+                        <input type="text" id="confirm_mother_middle_name" name="confirm_mother_middle_name" placeholder="Confirm Middle Name" required>
+                    </div>
+                    <div>
+                        <label for="confirm_mother_last_name">Confirm Mother's Last Name</label>
+                        <input type="text" id="confirm_mother_last_name" name="confirm_mother_last_name" placeholder="Confirm Last Name" required>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="form-section">
+            <h3>Contact Information</h3>
+            <div class="form-container">
+                <div class="form-subsection">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="text" id="mobile" name="mobile" placeholder="Mobile Number" required>
+                </div>
+                <div class="form-subsection">
+                    <label for="confirm_mobile">Confirm Mobile Number</label>
+                    <input type="text" id="confirm_mobile" name="confirm_mobile" placeholder="Confirm Mobile Number" required>
+                </div>
+                <div class="form-container">
+                    <!-- Email Input with Domain Selection -->
+                    <div class="form-subsection">
+                        <label for="email">Email Address</label>
+                        <div class="email-row">
+                            <input type="email" id="email" name="email" placeholder="Email Address" required>
+                            <select id="email_domain" name="email_domain" required>
+                                <option value="">Select Domain</option>
+                                <option value="gmail.com">@gmail.com</option>
+                                <option value="yahoo.com">@yahoo.com</option>
+                                <option value="outlook.com">@outlook.com</option>
+                                <option value="hotmail.com">@hotmail.com</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Confirm Email Input with Domain Selection -->
+                    <div class="form-subsection">
+                        <label for="confirm_email">Confirm Email Address</label>
+                        <div class="email-row">
+                            <input type="email" id="confirm_email" name="confirm_email" placeholder="Confirm Email Address" required>
+                            <select id="confirm_email_domain" name="confirm_email_domain" required>
+                                <option value="">Select Domain</option>
+                                <option value="gmail.com">@gmail.com</option>
+                                <option value="yahoo.com">@yahoo.com</option>
+                                <option value="outlook.com">@outlook.com</option>
+                                <option value="hotmail.com">@hotmail.com</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+        </div>
+            
+        </div>
+
+        <!-- Category, Gender, Community -->
+        <div class="form-section">
+            <h3>Category, Gender, and Community</h3>
+            <div class="form-subsection checkbox-group">
+                <div class="form-subsection">
+                    <label>Marital Status:</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="marital_status" value="Single"> Single</label>
+                        <label><input type="checkbox" name="marital_status" value="Married"> Married</label>
+                        <label><input type="checkbox" name="marital_status" value="Divorced"> Divorced</label>
+                    </div>
+                <!-- Category Section -->
+        <div class="form-subsection">
+            <label>Category:</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="category" value="General"> General</label>
+                <label><input type="checkbox" name="category" value="OBC"> OBC</label>
+                <label><input type="checkbox" name="category" value="SC"> SC</label>
+                <label><input type="checkbox" name="category" value="ST"> ST</label>
+            </div>
+        
+            <div class="form-subsection">
+                <label>Gender:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="gender" value="Male"> Male</label>
+                    <label><input type="checkbox" name="gender" value="Female"> Female</label>
+                    <label><input type="checkbox" name="gender" value="Other"> Other</label>
+                </div
+                <!-- Documents Upload -->
+                <div class="form-section">
+                    <h3>Upload Documents</h3>
+                    <div class="upload-container">
+                        <label for="photo">Upload Photo</label>
+                        <input type="file" id="photo" name="photo" accept="image/*" onchange="previewImage(event, 'photo-preview')">
+                        <div id="photo-preview" class="preview-box"></div>
+                    </div>
+                    <div class="upload-container">
+                        <label for="signature">Upload Signature</label>
+                        <input type="file" id="signature" name="signature" accept="image/*" onchange="previewImage(event, 'signature-preview')">
+                        <div id="signature-preview" class="preview-box"></div>
+                    </div>
+                    <div class="upload-container">
+                        <label for="resume">Upload Resume</label>
+                        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" onchange="previewResume(event)">
+                        <div id="resume-preview">No file selected</div>
+                    </div>
+                </div>
+                
+                <script>
+                    function previewImage(event, previewId) {
+                        const reader = new FileReader();
+                        reader.onload = function() {
+                            const preview = document.getElementById(previewId);
+                            preview.innerHTML = `<img src="${reader.result}" alt="Image Preview">`;
+                        };
+                        reader.readAsDataURL(event.target.files[0]);
+                    }
+                
+                    function previewResume(event) {
+                        const fileName = event.target.files[0].name;
+                        document.getElementById('resume-preview').innerText = `Selected file: ${fileName}`;
+                    }
+                </script>
+                
+        </div>
+         <!-- Contact Details -->
+         <div class="form-section">
+            <h3>Contact Details</h3>
+            <div class="form-subsection">
+                <label for="address">Address</label>
+                <textarea id="address" name="address" rows="4" required></textarea>
+            </div>
+            <div class="form-subsection">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            <div class="form-subsection">
+                <label for="state">State</label>
+                <input type="text" id="state" name="state" required>
+            </div>
+            <div class="form-subsection">
+                <label for="pin">PIN Code</label>
+                <input type="number" id="pin" name="pin" required>
+            </div>
+           
+        <!-- Educational Qualifications -->
+        <div class="form-section">
+            <h3>Educational Qualifications</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Exam</th>
+                        <th>Board/University</th>
+                        <th>Year of Passing</th>
+                        <th>Percentage/Grade</th>
+                        <th>Document</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10th Grade</td>
+                        <td><input type="text" name="board_10th" required></td>
+                        <td><input type="number" name="year_10th" required></td>
+                        <td><input type="text" name="percentage_10th" required></td>
+                        <td><input type="file" name="document_10th" accept=".pdf,.jpg,.png" required></td>
+                    </tr>
+                    <tr>
+                        <td>12th Grade</td>
+                        <td><input type="text" name="board_12th" required></td>
+                        <td><input type="number" name="year_12th" required></td>
+                        <td><input type="text" name="percentage_12th" required></td>
+                        <td><input type="file" name="document_12th" accept=".pdf,.jpg,.png" required></td>
+                    </tr>
+                    <tr>
+                        <td>Graduation</td>
+                        <td><input type="text" name="university_graduation" required></td>
+                        <td><input type="number" name="year_graduation" required></td>
+                        <td><input type="text" name="percentage_graduation" required></td>
+                        <td><input type="file" name="document_graduation" accept=".pdf,.jpg,.png" required></td>
+                    </tr>
+                    <tr>
+                        <td>Post-Graduation</td>
+                        <td><input type="text" name="university_post_graduation"></td>
+                        <td><input type="number" name="year_post_graduation"></td>
+                        <td><input type="text" name="percentage_post_graduation"></td>
+                        <td><input type="file" name="document_post_graduation" accept=".pdf,.jpg,.png"></td>
+                    </tr>
+                    <tr>
+                        <td>Phd</td>
+                        <td><input type="text" name="university_phd"></td>
+                        <td><input type="number" name="year_phd"></td>
+                        <td><input type="text" name="percentage_phd"></td>
+                        <td><input type="file" name="document_phd" accept=".pdf,.jpg,.png"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Experience Details -->
+        <div class="form-section">
+            <h3>Experience Details</h3>
+            <div class="form-subsection">
+                <label for="experience">Teaching Experience (Years)</label>
+                <input type="number" id="experience" name="experience" required>
+            </div>
+            <div class="form-subsection">
+                <label for="specialization">Specialization</label>
+                <input type="text" id="specialization" name="specialization" required>
+            </div>
+            <div class="form-subsection">
+                <label for="previous_employer">Previous Employer</label>
+                <input type="text" id="previous_employer" name="previous_employer">
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="confirm-group">
+            <input type="submit" value="Submit">
+        </div>
+        <div id="formErrors" class="error"></div>
+    </form>
+</div>
+
+       
+    </form>
+</div>
+
+</body>
+</html>
